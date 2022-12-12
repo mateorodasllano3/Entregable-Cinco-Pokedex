@@ -51,14 +51,13 @@ const Pokedex = () => {
        console.log(characterPokedex)
     return (
         <div className='card-pokedex'>
-            <h1>Pokedex</h1>
-            <p>Welcome {userName}</p>
+            <p>Welcome <br />
+            <span> {userName} !!</span></p>
             <div className='input-serch-pokedex'>
             <input type="text" 
             placeholder='Serch the character'
             value={inputSearch}
             onChange={e => setInputSearch(e.target.value)}/>
-            <button onClick={buttonsearch}>Enviar</button>
             <select onChange={FilterType}name="" id="">
                 {typePokemon.map((pokemon)=>(
                     <option 
@@ -68,6 +67,7 @@ const Pokedex = () => {
                     {pokemon.name}</option>
                 ))}
             </select>
+                <button onClick={buttonsearch}>Enviar</button>
             </div>
                 <ul className='list-pokemon-pokedex'>
             {pokemonpaginated.map((pokedex)=>(

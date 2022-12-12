@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import logoPokemon from '../assets/Img/pokemon-logo-png-0.png'
 
 const PokedexDetail = () => {
 
@@ -12,6 +13,11 @@ const PokedexDetail = () => {
         axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/`)
         .then(res=> setPokemon(res.data))
     },[])
+
+    const[isWeight, setIsWeight] = useState(true)
+
+    const[isHeight, setIsHeight] = useState(true)
+
     
     console.log(pokemon)
     return (
@@ -22,11 +28,14 @@ const PokedexDetail = () => {
             <div className='Container-WH'>
             <div className='Card-WH 1'>
             <h2>Weight</h2>
-            <p>{pokemon.weight} Hectograms</p>
+            {/* <p>{pokemon.weight} Hectograms</p> */}
+            <p>{isWeight ? pokemon.weight : pokemon.weight/10} {isWeight ? "Hectograms" : "Kilograms"}</p>
+            <button onClick={() => setIsWeight(!isWeight)} className='Button-WH'>Change Weight</button>
             </div>
             <div className='Card-WH 2'>
             <h2>Height</h2> 
-            <p>{pokemon.height} Centimeters</p>
+            <p>{isHeight ? pokemon.height : pokemon.height/100} {isHeight ? "Centimeters" : "Meters"}</p>
+            <button onClick={() => setIsHeight(!isHeight)} className='Button-WH'>Change Height</button>
             </div>
             </div>
             </div>
@@ -47,6 +56,8 @@ const PokedexDetail = () => {
             </div>
             </div>
             </div>
+            <img src={logoPokemon} alt="Logo"  className='Logo-Pokemon'/>
+            
         </div>
     );
 };
